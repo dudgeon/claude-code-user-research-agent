@@ -89,11 +89,11 @@ mkdir -p .claude/skills
 
 ```bash
 # From inside this repo (if you cloned it):
-cp install/research-log-skill.md /path/to/your/project/.claude/skills/research-log.md
+cp research-log-skill.md /path/to/your/project/.claude/skills/research-log.md
 
 # Or, if you're already in your project directory:
 # Just create .claude/skills/research-log.md and paste the contents of
-# install/research-log-skill.md into it
+# research-log-skill.md into it
 ```
 
 > **Can't see the `.claude` folder in Finder / your file browser?** See [Viewing hidden folders on Mac](#viewing-hidden-folders-on-mac) below.
@@ -136,7 +136,7 @@ Then add the same research snippet from Step 2 above to `~/.claude/CLAUDE.md`.
 mkdir -p ~/.claude/skills
 
 # Copy the skill:
-cp install/research-log-skill.md ~/.claude/skills/research-log.md
+cp research-log-skill.md ~/.claude/skills/research-log.md
 ```
 
 Now the research agent will be active in every Claude Code session, regardless of which project you're in.
@@ -226,9 +226,8 @@ The `.claude` folder starts with a dot, which macOS hides by default. Here's how
 
 ```
 ├── README.md
-└── install/
-    ├── claude-md-addition.md    ← Research snippet to add to your CLAUDE.md
-    └── research-log-skill.md   ← The skill file (copy to .claude/skills/)
+├── claude-md-addition.md    ← Research snippet to add to your CLAUDE.md
+└── research-log-skill.md   ← The skill file (copy to .claude/skills/)
 ```
 
 ---
