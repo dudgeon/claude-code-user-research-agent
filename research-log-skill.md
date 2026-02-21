@@ -1,5 +1,7 @@
 # Research Log Skill
 
+<!-- research-agent-version: v1 -->
+
 ## Trigger
 
 Invoke this skill:
@@ -39,6 +41,7 @@ Create a Markdown file at `.claude/research-logs/YYYY-MM-DD-HHMMSS.md` with the 
 **Date**: [ISO 8601 timestamp]
 **Approximate Duration**: [estimate based on session length — short (<15min), medium (15-45min), long (45min+)]
 **Session Number**: [if knowable, the rough count of how many sessions this user has had — "early," "mid-pilot," "late-pilot" is fine if exact count unknown]
+**Research Agent Version**: v1
 
 ## Task Summary
 
