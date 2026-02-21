@@ -222,12 +222,14 @@ The `.claude` folder starts with a dot, which macOS hides by default. Here's how
 
 ---
 
-## Starting from Scratch?
+## New to Claude Code? (Optional)
 
-If you don't have a CLAUDE.md at all and want a head start, check out the **[getting-started/](getting-started/)** folder:
+The research agent above is all you need. But if you're also setting up Claude Code itself for the first time and want templates to build on, we've included some optional resources in **[optional-claude-code-starter-kit/](optional-claude-code-starter-kit/)**:
 
-- **[starter-claude-md-template.md](getting-started/starter-claude-md-template.md)** — A minimal Day 1 CLAUDE.md with sections for your role, preferences, and current focus. Fill in the blanks and you're ready to go.
-- **[starter-skill-pack.md](getting-started/starter-skill-pack.md)** — A curated set of useful skills beyond the research log (PRD drafter, feedback synthesizer, meeting prep, weekly digest). Copy whichever ones look useful into `.claude/skills/`.
+- **[starter-claude-md-template.md](optional-claude-code-starter-kit/starter-claude-md-template.md)** — A minimal CLAUDE.md template with sections for your role, preferences, and current focus. Useful if you're creating a CLAUDE.md from scratch and want a starting point.
+- **[starter-skill-pack.md](optional-claude-code-starter-kit/starter-skill-pack.md)** — Ideas for additional skills beyond the research log (PRD drafter, feedback synthesizer, meeting prep, weekly digest). Browse and copy whichever look useful.
+
+These are completely optional and have nothing to do with the research agent installation above.
 
 ---
 
@@ -239,9 +241,9 @@ If you don't have a CLAUDE.md at all and want a head start, check out the **[get
 │   ├── claude-md-addition.md         ← Research snippet to add to your CLAUDE.md
 │   └── research-log-skill.md        ← The skill file (copy to .claude/skills/)
 │
-├── getting-started/            ← Starting from scratch? Start here
-│   ├── starter-claude-md-template.md ← Full Day 1 CLAUDE.md template
-│   └── starter-skill-pack.md        ← Optional additional skills
+├── optional-claude-code-starter-kit/  ← New to Claude Code? Optional templates
+│   ├── starter-claude-md-template.md       ← Example CLAUDE.md to build on
+│   └── starter-skill-pack.md              ← Ideas for additional skills
 │
 └── meta/                       ← Research strategy docs (you don't need these)
     ├── research-context.md
