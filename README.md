@@ -1,4 +1,4 @@
-# Trailblazers Research Agent
+# Claude Code User Research Agent
 
 **Add this to your Claude Code setup.** It takes 5 minutes. At the end of each work session, Claude will offer to log a short summary of how the session went — what kind of work you did, where you got stuck, and what slowed you down. No proprietary content, no code, no business strategy. Just behavioral patterns.
 
