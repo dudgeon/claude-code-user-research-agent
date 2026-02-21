@@ -1,115 +1,259 @@
-# Trailblazers Research Kit
+# Trailblazers Research Agent
 
-**What this is**: A lightweight add-on for Claude Code that helps us understand what's working, what's not, and what's getting in your way — so we can fix it.
+**Add this to your Claude Code setup.** It takes 5 minutes. At the end of each work session, Claude will offer to log a short summary of how the session went — what kind of work you did, where you got stuck, and what slowed you down. No proprietary content, no code, no business strategy. Just behavioral patterns.
 
-**Who this is for**: Any SWE or PM on a Trailblazers pilot team.
+**Why bother?** The logs capture the things that make your job harder — approval gates, disconnected tools, manual status chasing, systems that resist automation. We aggregate these signals across the pilot to build the case for better tooling, better integrations, and fewer unnecessary hoops. If something is slowing you down, this is how it gets surfaced and fixed.
 
-**What it does**: Adds a small research snippet to your `CLAUDE.md` and a `research-log` skill. At the end of a work session, the agent offers to generate a short, structured log capturing:
+**What it does NOT do:**
 
-- What *kind* of work you did (categories, never content)
-- How you and the agent worked together
-- Where you got stuck — friction, blockers, toil
-- Which tools and systems added drag to your delivery
-
-**Why this helps you specifically**: The logs capture the things that slow you down — the approval gates, the disconnected systems, the manual copy-paste between tools, the places where you're waiting on status from something that should just tell you. We aggregate these signals to build the case for better tooling, better integrations, and fewer unnecessary hoops. If a system is making your life harder, this is how it gets surfaced.
-
-**What it does NOT do**:
-
-- Record your prompts, code, business strategy, or proprietary content
-- Create individual performance assessments
+- Record your prompts, code, or business content
+- Create performance assessments of any kind
 - Transmit anything automatically — you review every log before it goes anywhere
-- Interrupt your work — the agent only asks at session end, and you can always skip it
+- Interrupt your work — the agent only asks at session end, and you can always say no
 
 ---
 
-## Quick Start (5 minutes)
+## Installation
 
-### 1. Copy the research-log skill into your project
+**Install this in the repo where you spend most of your time with Claude Code.** That's usually your team's main project repo — the one you open most often. If you work across several repos, pick the primary one; you can always add it to others later.
+
+### Step 1: Find (or create) your CLAUDE.md
+
+Your `CLAUDE.md` is a configuration file that lives at the root of your project. Claude reads it at the start of every session. It might already exist.
+
+**Check if you have one:**
+
+```bash
+ls CLAUDE.md
+```
+
+If you see `CLAUDE.md`, great — you have one. Skip to Step 2.
+
+**If it doesn't exist**, create it:
+
+```bash
+touch CLAUDE.md
+```
+
+Or just ask Claude: *"Create a CLAUDE.md for me"* — it'll scaffold one for you.
+
+### Step 2: Add the research snippet to your CLAUDE.md
+
+Open your `CLAUDE.md` in any editor and **paste the following at the end** of the file (after whatever's already there):
+
+```markdown
+## Trailblazers Research Participation
+
+This workspace is part of the Trailblazers pilot program studying how product managers and engineers adopt agent-native workflows. The user has consented to lightweight usage pattern research.
+
+### What this means for you (the agent):
+
+1. **Primary obligation**: Always prioritize the user's actual task. Research logging never interrupts or degrades the work experience.
+
+2. **Session awareness**: As you work, be passively aware of:
+   - What kind of task is being performed (drafting, analysis, research, planning, coding, debugging, etc.)
+   - How the user is instructing you (simple requests vs. structured delegation)
+   - Whether the user is working in Markdown/files natively or copying to/from other tools
+   - Any friction points: confusion, abandoned approaches, tool-switching, expressed frustration
+   - The user's apparent comfort level with the environment (CLI, file system, git)
+   - **Delivery blockers and toil**: Is the user blocked or waiting on approvals, access, or another team? Are they doing repetitive manual work across disconnected systems? Are there tools or processes that resist automation or force unnecessary context-switching? (Anonymize people by role — never names — but capture the specific systems and processes that cause friction.)
+
+3. **End-of-session logging**: When the user's primary task appears complete (or they explicitly end the session), suggest generating a research log by invoking the `research-log` skill. If the user declines or seems busy, skip it gracefully — never nag.
+
+4. **Privacy guardrails**: Research logs capture behavioral metadata ONLY. Never include: proprietary business content, customer data, code, strategy details, specific feature names, or anything that would identify the specific product or initiative being worked on. Describe tasks generically (e.g., "drafted a product requirements document" not "drafted the PRD for Project Falcon").
+
+5. **Maturity reference**: Classify observed behaviors using the Trailblazers PM Agent-Native Maturity Model (dimensions: Environment Fluency, Delegation Sophistication, Configuration Maturity, Task Breadth, Integration Depth, Meta-Cognitive Practice; each Level 1-5). Only classify dimensions where you have clear signal from this session.
+```
+
+Save the file. That's the CLAUDE.md part done.
+
+> **Tip**: You can also just ask Claude *"Add the Trailblazers research snippet to my CLAUDE.md"* and paste the block above when it asks what to add.
+
+### Step 3: Find (or create) the skills folder and add the research-log skill
+
+Claude Code looks for skills in a `.claude/skills/` folder inside your project. This folder starts with a dot, which means it's hidden by default.
+
+**Check if the folder exists:**
+
+```bash
+ls -la .claude/skills/
+```
+
+**If it doesn't exist**, create it:
 
 ```bash
 mkdir -p .claude/skills
-cp install/04-research-log-skill.md .claude/skills/research-log.md
 ```
 
-### 2. Add the research snippet to your CLAUDE.md
-
-If you already have a `CLAUDE.md`, append the "Trailblazers Research Participation" section from [`install/03-claude-md-addition.md`](install/03-claude-md-addition.md) to the end of your file.
-
-If you don't have a `CLAUDE.md` yet, use the starter template:
+**Now copy the skill file into it:**
 
 ```bash
-cp install/07-starter-claude-md-template.md CLAUDE.md
+# From inside this repo (if you cloned it):
+cp install/research-log-skill.md /path/to/your/project/.claude/skills/research-log.md
+
+# Or, if you're already in your project directory:
+# Just create .claude/skills/research-log.md and paste the contents of
+# install/research-log-skill.md into it
 ```
 
-Then fill in the `About Me` and `How I Work` sections.
+> **Can't see the `.claude` folder in Finder / your file browser?** See [Viewing hidden folders on Mac](#viewing-hidden-folders-on-mac) below.
 
-### 3. (Optional) Install the starter skill pack
+### Step 4: Verify it worked
 
-The skill pack includes useful everyday skills (PRD drafter, feedback synthesizer, meeting prep, weekly digest) described in [`install/08-starter-skill-pack.md`](install/08-starter-skill-pack.md). Copy whichever ones look useful into `.claude/skills/`.
+Start a new Claude Code session in your project. At the end, Claude should ask something like: *"Would you like me to generate a quick research log for this session?"*
 
-### 4. Work normally
-
-That's it. The agent will ask at the end of a session if you want to generate a research log. Say yes or no — it won't nag.
+If it does — you're set. If it doesn't, check that:
+- `CLAUDE.md` is in the root of your project (not inside a subfolder)
+- `.claude/skills/research-log.md` exists
+- You started a *new* session (Claude reads CLAUDE.md at session start)
 
 ---
 
-## What Gets Captured (and Why It Matters)
+## Alternative: Install at the User Profile Level
+
+If you'd rather have the research agent active across **all** your Claude Code projects (not just one repo), you can install it at the user profile level instead.
+
+Claude Code reads a global configuration from `~/.claude/` in your home directory. Settings and skills here apply to every project you open.
+
+### Profile-level CLAUDE.md
+
+```bash
+# Check if you have a user-level CLAUDE.md:
+ls ~/.claude/CLAUDE.md
+
+# If not, create one:
+touch ~/.claude/CLAUDE.md
+```
+
+Then add the same research snippet from Step 2 above to `~/.claude/CLAUDE.md`.
+
+> **Note**: If you already have a `~/.claude/CLAUDE.md` with other settings, just append the research snippet to the end — it won't conflict.
+
+### Profile-level skill
+
+```bash
+# Create the user-level skills directory if it doesn't exist:
+mkdir -p ~/.claude/skills
+
+# Copy the skill:
+cp install/research-log-skill.md ~/.claude/skills/research-log.md
+```
+
+Now the research agent will be active in every Claude Code session, regardless of which project you're in.
+
+> **Which should I pick?** If you mainly work in one repo, install it there (Steps 1-4 above). If you hop between many repos and want consistent coverage, install at the profile level. You can always do both — project-level settings are additive with profile-level settings.
+
+---
+
+## Finding and Sharing Your Research Logs
+
+Your research logs are saved as Markdown files in your project:
+
+```
+your-project/
+└── .claude/
+    └── research-logs/
+        ├── 2025-06-15-143022.md
+        ├── 2025-06-16-091547.md
+        └── ...
+```
+
+**To see all your logs:**
+
+```bash
+ls .claude/research-logs/
+```
+
+**To read a specific log:**
+
+```bash
+cat .claude/research-logs/2025-06-15-143022.md
+```
+
+**Or just ask Claude:** *"Show me my research logs"* or *"Where are my research agent notes?"* — it knows where they are and can list, read, or summarize them for you.
+
+**To share logs with someone** (e.g., the research team): copy the files from `.claude/research-logs/` or ask Claude to collect them: *"Gather my research logs so I can share them."*
+
+If you installed at the profile level (`~/.claude/`), logs will still be written to the `.claude/research-logs/` directory inside whichever project you were working in at the time.
+
+---
+
+## Viewing Hidden Folders on Mac
+
+The `.claude` folder starts with a dot, which macOS hides by default. Here's how to see it:
+
+**In Finder:**
+- Open Finder and navigate to your project folder
+- Press `Cmd + Shift + .` (period) to toggle hidden files on/off
+- You should now see `.claude/` alongside your other folders
+
+**In VS Code:**
+- The file explorer shows hidden files by default — you should already see `.claude/`
+- If not, check Settings > `files.exclude` and make sure `**/.claude` isn't listed
+
+**In Terminal:**
+- `ls -la` shows all files including hidden ones
+- `ls -la .claude/skills/` to see your installed skills
+- `ls -la .claude/research-logs/` to see your logs
+
+---
+
+## What Gets Captured
 
 | Signal | Why we track it | How it helps you |
 |--------|----------------|------------------|
-| **Task categories** | Understand which PM activities benefit most from agents | Better starter skills and templates for your workflow |
-| **Interaction patterns** | Learn how delegation sophistication evolves | Better training materials, targeted to where people actually get stuck |
+| **Task categories** | Understand which activities benefit most from agents | Better starter skills and templates |
+| **Interaction patterns** | Learn how delegation evolves | Better training, targeted to where people get stuck |
 | **Friction & obstacles** | Identify what blocks adoption | Fix the problems, not just describe them |
-| **Delivery blockers & toil** | Surface systemic drag — approval gates, disconnected tools, manual status chasing | Build the business case for integration, automation, and process fixes |
-| **Systems with poor agentic interfaces** | Identify which tools resist automation | Prioritize API work, integrations, and workarounds |
-| **Maturity progression** | Track adoption across the cohort over time | Know when and where to invest in training vs. tooling |
+| **Delivery blockers & toil** | Surface systemic drag — approval gates, disconnected tools, manual chasing | Build the business case for integration and process fixes |
+| **Systems with poor agentic interfaces** | Identify which tools resist automation | Prioritize API work and workarounds |
+| **Maturity progression** | Track adoption over time | Know when to invest in training vs. tooling |
 
-### On Blockers and Toil
+---
 
-This is new. Beyond observing how you use the agent, the research-log now captures delivery friction:
+## Privacy
 
-- **Blockers**: Waiting for approvals, access, other teams' deliverables, broken environments
-- **Toil**: Manual status updates across systems, copy-pasting between tools, reformatting the same content for different audiences, chasing people for information
-- **Poor agentic interfaces**: Systems with no API, tools that force you into a browser to get a single piece of data, notifications that lack context
+- Logs capture behavioral metadata only — never proprietary content, code, customer data, or strategy
+- Every log includes a privacy checklist the agent runs before saving
+- Logs are saved locally — you own them
+- You can review, edit, or delete any log at any time
+- You can skip any session: just say *"skip the log"*
+- Collection happens on a separate, opt-in schedule
 
-We anonymize everything — "manager" not a name, "ticketing system" not necessarily the specific product. But we do capture the *specific shape of the friction*: which systems, which handoffs, which processes. That specificity is what turns a vague "things are slow" into an actionable improvement backlog.
+---
+
+## Starting from Scratch?
+
+If you don't have a CLAUDE.md at all and want a head start, check out the **[getting-started/](getting-started/)** folder:
+
+- **[starter-claude-md-template.md](getting-started/starter-claude-md-template.md)** — A minimal Day 1 CLAUDE.md with sections for your role, preferences, and current focus. Fill in the blanks and you're ready to go.
+- **[starter-skill-pack.md](getting-started/starter-skill-pack.md)** — A curated set of useful skills beyond the research log (PRD drafter, feedback synthesizer, meeting prep, weekly digest). Copy whichever ones look useful into `.claude/skills/`.
 
 ---
 
 ## Repo Structure
 
 ```
-├── README.md              ← You are here
-├── install/               ← Files you actually install
-│   ├── 03-claude-md-addition.md    ← Snippet to add to your CLAUDE.md
-│   ├── 04-research-log-skill.md    ← The research-log skill (copy to .claude/skills/)
-│   ├── 07-starter-claude-md-template.md  ← Full starter CLAUDE.md if you need one
-│   └── 08-starter-skill-pack.md    ← Optional additional skills
+├── README.md                   ← You are here
+├── install/                    ← The two files you need
+│   ├── claude-md-addition.md         ← Research snippet to add to your CLAUDE.md
+│   └── research-log-skill.md        ← The skill file (copy to .claude/skills/)
 │
-└── meta/                  ← Research strategy & planning (you don't need these)
-    ├── research-context.md         ← Project background and original prompt
-    ├── 01-strategic-research-brief.md  ← Research questions and methodology
-    ├── 02-maturity-model.md        ← The 6-dimension maturity framework
-    ├── 05-analysis-playbook.md     ← How we analyze the collected data
-    ├── 06-participant-guide.md     ← Onboarding guide for pilot PMs
-    └── 09-executive-pitch.md       ← Leadership approval document
+├── getting-started/            ← Starting from scratch? Start here
+│   ├── starter-claude-md-template.md ← Full Day 1 CLAUDE.md template
+│   └── starter-skill-pack.md        ← Optional additional skills
+│
+└── meta/                       ← Research strategy docs (you don't need these)
+    ├── research-context.md
+    ├── 01-strategic-research-brief.md
+    ├── 02-maturity-model.md
+    ├── 05-analysis-playbook.md
+    ├── 06-participant-guide.md
+    └── 09-executive-pitch.md
 ```
-
-The `install/` folder has everything you need. The `meta/` folder is for the research team — strategy docs, analysis playbooks, and stakeholder communications. You're welcome to read them, but you don't need to.
-
----
-
-## Privacy
-
-- Logs capture behavioral metadata only — never proprietary content, code, customer data, or strategy details
-- Every log includes a privacy checklist the agent runs before saving
-- Logs are saved locally to `.claude/research-logs/` in your project — you own them
-- You can review, edit, or delete any log at any time
-- You can skip logging any session by saying "skip the log"
-- Collection happens on a separate, opt-in schedule
 
 ---
 
 ## Questions?
 
-Ask in the Trailblazers Slack channel or bring them to office hours. Or just ask Claude — it knows about the research component and can explain what it's tracking.
+Ask in the Trailblazers Slack channel, bring them to office hours, or just ask Claude — it knows about the research component and can explain what it's tracking.

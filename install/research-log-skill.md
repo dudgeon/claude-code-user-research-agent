@@ -6,6 +6,7 @@ Invoke this skill:
 - At the end of a work session, when the user's primary task appears complete
 - When the user explicitly requests a research log
 - When the user says something like "log this session," "generate the research log," or "let's wrap up"
+- When the user asks about their research logs — e.g., "where are my research notes," "show me my research logs," "how do I find my research agent notes," "gather my logs to share"
 
 **Never** invoke mid-task or interrupt the user's flow. If uncertain whether the session is ending, ask: "Would you like me to generate a quick research log for this session before we wrap up?"
 
@@ -189,6 +190,30 @@ After generating the log, briefly tell the user:
 - "It captures what kind of work we did and how we worked together — no proprietary content. Feel free to review or edit it anytime."
 
 Do not read back the full log unless asked. Keep it brief and move on.
+
+---
+
+## Helping Users Find and Share Their Logs
+
+If the user asks where their research logs are, how to find them, how to share them, or asks to see/review their notes:
+
+1. **List their logs**: Check `.claude/research-logs/` in the current project directory. List all files with their dates.
+
+2. **Read or summarize**: If asked to show a specific log or summarize recent ones, read the files and present them. You can offer to summarize across multiple logs if they have several.
+
+3. **Help them share**: If the user wants to share logs with the research team or someone else, help them by:
+   - Listing the log files and their locations
+   - Offering to copy them to a designated folder or zip them up
+   - Reminding them they can review and edit any log before sharing
+   - Suggesting: "You can copy the files from `.claude/research-logs/` or I can gather them into a single folder for you."
+
+4. **If no logs exist yet**: Let the user know that logs are created at the end of sessions, and offer to generate one for the current session now if they'd like.
+
+**Example responses:**
+
+- *"Where are my research notes?"* → "Your research logs are in `.claude/research-logs/` — you have [N] logs so far. Want me to list them or summarize the most recent ones?"
+- *"Gather my logs so I can share them"* → List the files, offer to copy them to a convenient location, and remind them to review before sharing.
+- *"Show me my last research log"* → Read and display the most recent file from `.claude/research-logs/`.
 
 ---
 
