@@ -1,80 +1,115 @@
-# Trailblazers: Agent-Instrumented User Research
+# Trailblazers Research Kit
 
-## Executive Summary
+**What this is**: A lightweight add-on for Claude Code that helps us understand what's working, what's not, and what's getting in your way — so we can fix it.
 
-The Trailblazers pilot gives a small number of hand-picked product management teams access to Claude Code — Anthropic's agentic coding assistant — for a defined trial period. The pilot is small, but the findings must inform an organization-wide strategy to move hundreds of PMs toward agent-native workflows.
+**Who this is for**: Any SWE or PM on a Trailblazers pilot team.
 
-Traditional user research methods (surveys, interviews, observation) cannot capture how people actually adopt radically new tools. Surveys are recall-biased, interviews are expensive and slow, and observation distorts the very behavior you're trying to study.
+**What it does**: Adds a small research snippet to your `CLAUDE.md` and a `research-log` skill. At the end of a work session, the agent offers to generate a short, structured log capturing:
 
-**Our approach: use the agent itself as the research instrument.** Each pilot PM adds two lightweight components to their Claude Code setup: a brief addition to their CLAUDE.md configuration file (~15 lines) and a pre-installed research-log skill. The agent passively observes its own usage patterns during normal work, then generates a structured behavioral log at session end — capturing task types, interaction patterns, environment comfort, delegation sophistication, and maturity classification. Never proprietary content, code, or strategy.
+- What *kind* of work you did (categories, never content)
+- How you and the agent worked together
+- Where you got stuck — friction, blockers, toil
+- Which tools and systems added drag to your delivery
 
-This creates a real-time behavioral record that's richer than surveys, faster than interviews, and costs nothing in participant time. Four analysis checkpoints across 8 weeks transform raw data into a validated maturity model, training curriculum, starter kit, and scaling playbook.
+**Why this helps you specifically**: The logs capture the things that slow you down — the approval gates, the disconnected systems, the manual copy-paste between tools, the places where you're waiting on status from something that should just tell you. We aggregate these signals to build the case for better tooling, better integrations, and fewer unnecessary hoops. If a system is making your life harder, this is how it gets surfaced.
 
-The meta-argument: if we can't use an agent to study agent adoption, we've already failed to internalize the approach we're teaching.
+**What it does NOT do**:
 
-## Repository Contents
+- Record your prompts, code, business strategy, or proprietary content
+- Create individual performance assessments
+- Transmit anything automatically — you review every log before it goes anywhere
+- Interrupt your work — the agent only asks at session end, and you can always skip it
 
-### Presentation
+---
 
-`trailblazers-research-plan.pptx` — 14-slide executive deck presenting the research instrumentation plan. Structured as a narrative argument (SCQA framework) with action titles, code snippets, flow diagrams, and the maturity model. Designed for a product executive sponsor audience with limited familiarity with agent control primitives.
+## Quick Start (5 minutes)
 
-### Supporting Documents (01–09)
+### 1. Copy the research-log skill into your project
 
-These nine documents form the complete operational toolkit for the Trailblazers research program:
-
-| # | Document | Purpose |
-|---|----------|---------|
-| 01 | `01-strategic-research-brief.md` | Foundational strategy doc — research questions, methodology, success metrics, and deliverable timeline |
-| 02 | `02-maturity-model.md` | PM Agent-Native Maturity Model — 6 dimensions, 5 levels each, with behavioral indicators and compact shorthand notation |
-| 03 | `03-claude-md-addition.md` | The exact CLAUDE.md text participants add — ~15 lines with installation instructions and privacy guardrails |
-| 04 | `04-research-log-skill.md` | The research skill file — generates structured session logs with task categories, interaction patterns, and maturity assessment |
-| 05 | `05-analysis-playbook.md` | 8-week analysis roadmap — four checkpoint rounds with quantitative and qualitative methods, visualization guidance, and output templates |
-| 06 | `06-participant-guide.md` | Onboarding guide for pilot PMs — what they're getting, what's expected, tips, and success criteria |
-| 07 | `07-starter-claude-md-template.md` | Day 1 CLAUDE.md template — intentionally minimal to allow natural evolution (which is itself a maturity signal) |
-| 08 | `08-starter-skill-pack.md` | Curated skills (PRD drafter, feedback synthesizer, meeting prep, weekly digest) with rationale for inclusions and deliberate omissions |
-| 09 | `09-executive-pitch.md` | Single-page executive summary for leadership approval |
-
-### Assets
-
-The `/assets` folder contains reference materials used in developing the program:
-
-- `MLA Slide Template Empty.pptx` — Capital One MLA brand slide template (Optimist font, navy brand palette) used as the design reference for the presentation
-- `insight-synthesis-and-narrative-instruction.md` — Style guide for extracting insights (not summaries) and constructing presentation narratives using SCQA framework and action titles
-
-## Key Concepts Explained
-
-**CLAUDE.md** — A plain-text configuration file that lives in a project folder. When Claude Code opens a project, it reads this file first. It contains context about the user, their preferences, and working conventions. Think of it as a briefing document for a new colleague.
-
-**Skills** — Reusable markdown files (stored in `.claude/skills/`) that teach the agent how to perform specific recurring tasks. Think of them as playbooks an employee pulls off the shelf. The research-log skill is what generates the structured behavioral data.
-
-**Maturity Model** — A six-dimension framework (Environment Fluency, Delegation Sophistication, Configuration Maturity, Task Breadth, Integration Depth, Meta-Cognitive Practice) for classifying where a PM sits on their agent-native adoption journey. Each dimension has 5 levels. Encoded as compact shorthand (e.g., `E3-D2-C1-T2-I1-M2`) for tracking and comparison.
-
-## How the Documents Connect
-
-```
-Strategic Brief (01)        ← Defines research questions and success metrics
-        │
-        ├── Maturity Model (02)     ← Classification framework used by everything below
-        │
-        ├── CLAUDE.md Addition (03) ← What participants install (data collection trigger)
-        ├── Research Skill (04)     ← What generates the data (structured logs)
-        │
-        ├── Analysis Playbook (05)  ← How to analyze the data (4 checkpoints over 8 weeks)
-        │
-        ├── Participant Guide (06)  ← Onboarding for pilot PMs
-        ├── Starter CLAUDE.md (07)  ← Day 1 configuration template
-        ├── Starter Skill Pack (08) ← Day 1 skills (value + instrumentation)
-        │
-        └── Executive Pitch (09)    ← Approval request for leadership
-                │
-                └── Presentation (pptx) ← Visual narrative of the full plan
+```bash
+mkdir -p .claude/skills
+cp install/04-research-log-skill.md .claude/skills/research-log.md
 ```
 
-## Open Questions
+### 2. Add the research snippet to your CLAUDE.md
 
-These were identified in the initial planning and remain to be resolved:
+If you already have a `CLAUDE.md`, append the "Trailblazers Research Participation" section from [`install/03-claude-md-addition.md`](install/03-claude-md-addition.md) to the end of your file.
 
-1. **Log collection mechanism** — Shared git repo is ideal but may be a maturity hurdle for Day 1 PMs. Alternatives: scheduled collection script or manual upload.
-2. **Compliance review** — The CLAUDE.md addition and research skill need formal signoff before deployment.
-3. **SWE instrumentation** — Whether to also instrument the software engineering participants or keep research PM-focused.
-4. **Deployment logistics** — Installation support, troubleshooting channel, office hours cadence.
+If you don't have a `CLAUDE.md` yet, use the starter template:
+
+```bash
+cp install/07-starter-claude-md-template.md CLAUDE.md
+```
+
+Then fill in the `About Me` and `How I Work` sections.
+
+### 3. (Optional) Install the starter skill pack
+
+The skill pack includes useful everyday skills (PRD drafter, feedback synthesizer, meeting prep, weekly digest) described in [`install/08-starter-skill-pack.md`](install/08-starter-skill-pack.md). Copy whichever ones look useful into `.claude/skills/`.
+
+### 4. Work normally
+
+That's it. The agent will ask at the end of a session if you want to generate a research log. Say yes or no — it won't nag.
+
+---
+
+## What Gets Captured (and Why It Matters)
+
+| Signal | Why we track it | How it helps you |
+|--------|----------------|------------------|
+| **Task categories** | Understand which PM activities benefit most from agents | Better starter skills and templates for your workflow |
+| **Interaction patterns** | Learn how delegation sophistication evolves | Better training materials, targeted to where people actually get stuck |
+| **Friction & obstacles** | Identify what blocks adoption | Fix the problems, not just describe them |
+| **Delivery blockers & toil** | Surface systemic drag — approval gates, disconnected tools, manual status chasing | Build the business case for integration, automation, and process fixes |
+| **Systems with poor agentic interfaces** | Identify which tools resist automation | Prioritize API work, integrations, and workarounds |
+| **Maturity progression** | Track adoption across the cohort over time | Know when and where to invest in training vs. tooling |
+
+### On Blockers and Toil
+
+This is new. Beyond observing how you use the agent, the research-log now captures delivery friction:
+
+- **Blockers**: Waiting for approvals, access, other teams' deliverables, broken environments
+- **Toil**: Manual status updates across systems, copy-pasting between tools, reformatting the same content for different audiences, chasing people for information
+- **Poor agentic interfaces**: Systems with no API, tools that force you into a browser to get a single piece of data, notifications that lack context
+
+We anonymize everything — "manager" not a name, "ticketing system" not necessarily the specific product. But we do capture the *specific shape of the friction*: which systems, which handoffs, which processes. That specificity is what turns a vague "things are slow" into an actionable improvement backlog.
+
+---
+
+## Repo Structure
+
+```
+├── README.md              ← You are here
+├── install/               ← Files you actually install
+│   ├── 03-claude-md-addition.md    ← Snippet to add to your CLAUDE.md
+│   ├── 04-research-log-skill.md    ← The research-log skill (copy to .claude/skills/)
+│   ├── 07-starter-claude-md-template.md  ← Full starter CLAUDE.md if you need one
+│   └── 08-starter-skill-pack.md    ← Optional additional skills
+│
+└── meta/                  ← Research strategy & planning (you don't need these)
+    ├── research-context.md         ← Project background and original prompt
+    ├── 01-strategic-research-brief.md  ← Research questions and methodology
+    ├── 02-maturity-model.md        ← The 6-dimension maturity framework
+    ├── 05-analysis-playbook.md     ← How we analyze the collected data
+    ├── 06-participant-guide.md     ← Onboarding guide for pilot PMs
+    └── 09-executive-pitch.md       ← Leadership approval document
+```
+
+The `install/` folder has everything you need. The `meta/` folder is for the research team — strategy docs, analysis playbooks, and stakeholder communications. You're welcome to read them, but you don't need to.
+
+---
+
+## Privacy
+
+- Logs capture behavioral metadata only — never proprietary content, code, customer data, or strategy details
+- Every log includes a privacy checklist the agent runs before saving
+- Logs are saved locally to `.claude/research-logs/` in your project — you own them
+- You can review, edit, or delete any log at any time
+- You can skip logging any session by saying "skip the log"
+- Collection happens on a separate, opt-in schedule
+
+---
+
+## Questions?
+
+Ask in the Trailblazers Slack channel or bring them to office hours. Or just ask Claude — it knows about the research component and can explain what it's tracking.

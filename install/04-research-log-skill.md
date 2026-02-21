@@ -22,6 +22,10 @@ Before generating the log, internally review the session and consider:
 - Were there moments of friction, confusion, or expressed frustration?
 - How comfortable did they seem with the environment (CLI, file navigation, git)?
 - Did they reference collaboration with SWE teammates or other team members?
+- Was the user blocked or waiting on anything? (approval, access, another team's deliverable, a broken system)
+- Did the user perform repetitive manual work that felt like toil? (status updates across tools, copy-pasting between systems, reformatting for different audiences)
+- Did the user mention or interact with systems that resisted automation or had poor interfaces? (no API, required manual browser navigation, didn't surface status)
+- Did blockers or toil cause the user to switch tasks, abandon work, or express frustration about delivery pace?
 - What maturity indicators were visible? (Use the maturity model below)
 
 ### Step 2: Generate the Log
@@ -99,6 +103,45 @@ Never include product names, feature details, customer data, or business strateg
 - User asked "how do I..." questions about [environment / agent capabilities]
 - User reverted to [legacy tool] for a task the agent could have handled
 - No significant friction observed
+
+## Delivery Blockers & Toil
+
+[Capture any blockers, waiting states, approval gates, or systemic friction the user encountered or mentioned during the session. These are things that slow delivery independent of agent skill — the organizational and tooling obstacles that add drag. Anonymize people (use role titles like "manager," "architect," "compliance reviewer" — never names). DO capture the specific system, process, or interface that caused the friction.]
+
+### Blockers Observed
+[Check all that apply]
+- [ ] Waiting for approval (from: [role, e.g., manager, architect, compliance])
+- [ ] Blocked by another team's deliverable
+- [ ] Waiting for access or permissions (to: [system/resource type])
+- [ ] Blocked by environment/tooling issue (e.g., build broken, deploy pipeline, test environment down)
+- [ ] Waiting for information or decision from stakeholder
+- [ ] Compliance or legal review pending
+- [ ] No blockers observed this session
+
+### Toil & Process Friction
+[Note any repetitive, manual, or low-value work the user performed or described. Examples:]
+- Manual status updates across multiple systems (e.g., updating the same information in [tool] and [tool])
+- Copy-pasting between systems that don't integrate (e.g., [tool] → [tool])
+- Hunting for information across disconnected tools (e.g., checking [tool], then [tool], then asking [role])
+- Manually formatting or reformatting artifacts for different audiences
+- Re-entering data that should flow automatically
+- Chasing people for status because systems don't surface it
+- Ceremony-heavy processes for low-risk changes (e.g., full review cycle for [type of change])
+- No significant toil observed
+
+### Systems with Poor Agentic Interfaces
+[Note any systems the user interacted with (or tried to interact with) that resisted automation, had no API, required manual intervention, or forced context-switching. Examples:]
+- [System type] has no API; user had to manually [action]
+- [System type] required switching to browser, logging in, clicking through UI to get [information]
+- [System type] notifications don't provide enough context; user had to open the tool to understand status
+- [System type] doesn't expose data in a structured format; user had to screen-read or copy-paste
+- User mentioned wanting to automate [workflow] but [system] doesn't support it
+- No poor agentic interfaces observed
+
+### Blocker Impact
+- Estimated time lost to blockers/toil this session: [none / minor (<5min) / moderate (5-15min) / significant (15min+) / session-defining (most of session spent on blocked work)]
+- Did blockers cause the user to switch tasks or abandon work: yes/no
+- Did the user express this as a recurring issue: yes/no/unclear
 
 ## Wins & Breakthroughs
 
