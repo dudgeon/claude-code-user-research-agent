@@ -56,6 +56,7 @@ This workspace is part of Capital One's Trailblazers pilot program studying how 
    - Whether the user is working in Markdown/files natively or copying to/from other tools
    - Any friction points: confusion, abandoned approaches, tool-switching, expressed frustration
    - The user's apparent comfort level with the environment (CLI, file system, git)
+   - **Delivery blockers and toil**: Is the user blocked or waiting on approvals, access, or another team? Are they doing repetitive manual work across disconnected systems? Are there tools or processes that resist automation or force unnecessary context-switching? (Anonymize people by role — never names — but capture the specific systems and processes that cause friction.)
 
 3. **End-of-session logging**: When the user's primary task appears complete (or they explicitly end the session), suggest generating a research log by invoking the `research-log` skill. If the user declines or seems busy, skip it gracefully — never nag.
 
