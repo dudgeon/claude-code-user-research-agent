@@ -222,40 +222,17 @@ The `.claude` folder starts with a dot, which macOS hides by default. Here's how
 
 ---
 
-## New to Claude Code? (Optional)
-
-The research agent above is all you need. But if you're also setting up Claude Code itself for the first time and want templates to build on, we've included some optional resources in **[optional-claude-code-starter-kit/](optional-claude-code-starter-kit/)**:
-
-- **[starter-claude-md-template.md](optional-claude-code-starter-kit/starter-claude-md-template.md)** — A minimal CLAUDE.md template with sections for your role, preferences, and current focus. Useful if you're creating a CLAUDE.md from scratch and want a starting point.
-- **[starter-skill-pack.md](optional-claude-code-starter-kit/starter-skill-pack.md)** — Ideas for additional skills beyond the research log (PRD drafter, feedback synthesizer, meeting prep, weekly digest). Browse and copy whichever look useful.
-
-These are completely optional and have nothing to do with the research agent installation above.
-
----
-
 ## Repo Structure
 
 ```
-├── README.md                   ← You are here
-├── install/                    ← The two files you need
-│   ├── claude-md-addition.md         ← Research snippet to add to your CLAUDE.md
-│   └── research-log-skill.md        ← The skill file (copy to .claude/skills/)
-│
-├── optional-claude-code-starter-kit/  ← New to Claude Code? Optional templates
-│   ├── starter-claude-md-template.md       ← Example CLAUDE.md to build on
-│   └── starter-skill-pack.md              ← Ideas for additional skills
-│
-└── meta/                       ← Research strategy docs (you don't need these)
-    ├── research-context.md
-    ├── 01-strategic-research-brief.md
-    ├── 02-maturity-model.md
-    ├── 05-analysis-playbook.md
-    ├── 06-participant-guide.md
-    └── 09-executive-pitch.md
+├── README.md
+└── install/
+    ├── claude-md-addition.md    ← Research snippet to add to your CLAUDE.md
+    └── research-log-skill.md   ← The skill file (copy to .claude/skills/)
 ```
 
 ---
 
 ## Questions?
 
-Ask in the Trailblazers Slack channel, bring them to office hours, or just ask Claude — it knows about the research component and can explain what it's tracking.
+Just ask Claude — it knows about the research component and can explain what it's tracking.
