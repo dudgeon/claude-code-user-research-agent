@@ -13,6 +13,15 @@ Thank you for your interest in helping us learn about how Claude Code is being u
 - Transmit anything automatically — you review every log before it goes anywhere
 - Interrupt your work — the agent only asks at session end, and you can always say no
 
+<p align="center">
+  <img src="assets/panel-1-welcome.png" width="48%" alt="A friendly research robot arrives at a PM's desk" />
+  <img src="assets/panel-2-observing.png" width="48%" alt="The robot quietly observes from a shelf while the PM works" />
+</p>
+<p align="center">
+  <img src="assets/panel-3-notes.png" width="48%" alt="The robot fills its notebook with observations" />
+  <img src="assets/panel-4-goodbye.png" width="48%" alt="End of day — the robot departs with a full notebook" />
+</p>
+
 ---
 
 ## Installation
