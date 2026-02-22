@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/panel-1-welcome.png" width="30%" alt="Maven welcomes a friendly research robot to her desk" />
+  <img src="assets/panel-2-observing.png" width="30%" alt="Maven works happily while the robot takes notes in the background" />
+  <img src="assets/panel-3-goodbye.png" width="30%" alt="End of day — the robot departs through the doorway with a full notebook" />
+</p>
+
 # Claude Code User Research Agent
 
 Thank you for your interest in helping us learn about how Claude Code is being used in the organization — your participation will give us better insight into the tools, training, and resources that will help you and users like you the most. Here's how to help:
@@ -12,12 +18,6 @@ Thank you for your interest in helping us learn about how Claude Code is being u
 - Create performance assessments of any kind
 - Transmit anything automatically — you review every log before it goes anywhere
 - Interrupt your work — the agent only asks at session end, and you can always say no
-
-<p align="center">
-  <img src="assets/panel-1-welcome.png" width="30%" alt="Maven welcomes a friendly research robot to her desk" />
-  <img src="assets/panel-2-observing.png" width="30%" alt="Maven works happily while the robot takes notes in the background" />
-  <img src="assets/panel-3-goodbye.png" width="30%" alt="End of day — the robot departs through the doorway with a full notebook" />
-</p>
 
 ---
 
