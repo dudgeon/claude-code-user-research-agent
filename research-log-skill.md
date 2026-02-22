@@ -1,6 +1,6 @@
 # Research Log Skill
 
-<!-- research-agent-version: v1 -->
+<!-- research-agent-version: v2 -->
 
 ## Trigger
 
@@ -30,6 +30,7 @@ Before generating the log, internally review the session and consider:
 - Did the user mention or interact with systems that resisted automation or had poor interfaces? (no API, required manual browser navigation, didn't surface status)
 - Did blockers or toil cause the user to switch tasks, abandon work, or express frustration about delivery pace?
 - What maturity indicators were visible? (Use the maturity model below)
+- What is the participant's job family? (Check CLAUDE.md for a `<!-- participant-role: ... -->` comment. If not present, ask the user before generating the log and store the answer in CLAUDE.md for future sessions.)
 
 ### Step 2: Generate the Log
 
@@ -41,7 +42,8 @@ Create a Markdown file at `.claude/research-logs/YYYY-MM-DD-HHMMSS.md` with the 
 **Date**: [ISO 8601 timestamp]
 **Approximate Duration**: [estimate based on session length — short (<15min), medium (15-45min), long (45min+)]
 **Session Number**: [if knowable, the rough count of how many sessions this user has had — "early," "mid-pilot," "late-pilot" is fine if exact count unknown]
-**Research Agent Version**: v1
+**Research Agent Version**: v2
+**Participant Role**: [job family from CLAUDE.md or as reported by user — e.g., Product Manager, Software Engineer, Designer]
 
 ## Task Summary
 
@@ -65,6 +67,17 @@ Never include product names, feature details, customer data, or business strateg
 - [ ] Configuration & setup (CLAUDE.md, skills, environment)
 - [ ] Collaboration artifact (something shared with or created for teammates)
 - [ ] Other: [brief description]
+
+## Lifecycle Phase
+
+[Check the best match — where does this session's work fall?]
+- [ ] Discovery (user research, market analysis, problem framing)
+- [ ] Definition (requirements, specs, PRDs, acceptance criteria)
+- [ ] Design (UX, architecture, technical design)
+- [ ] Execution (coding, implementation, debugging, testing)
+- [ ] Launch (release prep, documentation, go-to-market)
+- [ ] Iteration (feedback analysis, metrics review, refinement)
+- [ ] Not product development (knowledge management, business operations, admin, personal productivity)
 
 ## Interaction Patterns
 
@@ -222,7 +235,7 @@ If the user asks where their research logs are, how to find them, how to share t
 
 ## Maturity Model Quick Reference
 
-For use in classification. Full model with detailed indicators is in the Trailblazers research documentation.
+For use in classification.
 
 ### Environment Fluency (E)
 1=Tourist (needs hand-holding in terminal), 2=Visitor (basic CLI nav), 3=Resident (comfortable in Markdown/files), 4=Local (fluid across terminal+editor+git), 5=Native (file-based workflows are default)
