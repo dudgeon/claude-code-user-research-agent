@@ -150,24 +150,96 @@ This ambient awareness is straightforward with CLAUDE.md because Claude reads it
 ### Marketplace setup overhead
 - Creating a marketplace requires adding `.claude-plugin/marketplace.json` to this repo. This is a one-time setup cost and is straightforward.
 
+## Sideloading: Plugin Benefits Without a Marketplace
+
+Follow-up research (2026-02-22) into whether the plugin structure can be used
+without the overhead of setting up and teaching participants about marketplaces.
+
+### Three sideload approaches
+
+**1. `claude plugin add ./local-path` (one-time install from clone)**
+
+```bash
+git clone https://github.com/dudgeon/claude-code-user-research-agent ~/research-agent
+claude plugin add ~/research-agent
+```
+
+This installs the plugin persistently (written to `~/.claude/plugins/installed_plugins.json`) without any marketplace. The user clones the repo once, runs one command, done. Updates require a `git pull` in the cloned repo and reinstall.
+
+- Pros: No marketplace concept to explain. Two commands total. Persists across sessions.
+- Cons: Requires git clone first. Updates are manual. There is a [known bug](https://github.com/anthropics/claude-code/issues/12457) where local directory installs sometimes fail to persist — worth testing before committing to this path.
+
+**2. `--plugin-dir` flag (zero-install, dev-style)**
+
+```bash
+claude --plugin-dir ~/research-agent
+```
+
+Loads the plugin for a single session without any installation step. No marketplace, no `plugin add`, no persistence.
+
+- Pros: Simplest possible command. No install state to manage.
+- Cons: Must be passed every time Claude Code starts. Not practical for daily use unless wrapped in a shell alias. Non-technical users won't want to manage CLI flags.
+
+**3. Project-level `settings.json` (team-wide, zero participant action)**
+
+If the research team controls a shared repo, they can add to `.claude/settings.json`:
+
+```json
+{
+  "enabledPlugins": {
+    "research-agent@local": true
+  }
+}
+```
+
+Combined with including the plugin directory in the repo itself (e.g., at `.claude/plugins/research-agent/`), this means every team member who clones the repo gets the plugin automatically with zero manual steps.
+
+- Pros: True zero-touch install for participants. Team-wide consistency. No marketplace.
+- Cons: Requires the research team to commit plugin files into each participating project repo. Only works for repos the research team controls or can get PRs merged into.
+
+### Caveats discovered
+
+- **Plugin cache behavior**: When installed, Claude Code copies the plugin to `~/.claude/plugins/cache/` rather than running from the source directory. This means changes to the source require reinstallation. Symlinks within the plugin directory are followed during copy.
+- **`settings.local.json` bug**: If `enabledPlugins` only exists in `settings.local.json` (not in `settings.json`), plugins are silently ignored. Workaround: add an empty or false-valued `enabledPlugins` in `settings.json` so the merge works.
+- **No direct git-URL install**: Unlike `npm install github:user/repo`, there doesn't appear to be a way to `claude plugin add https://github.com/...` directly. The user needs either a local clone or a marketplace. This is the main gap.
+
+### Assessment: Which sideload path fits this project?
+
+For this research agent, the **hybrid of approaches 1 and 3** is most promising:
+
+| Audience | Approach |
+|---|---|
+| Individual participants (PMs, designers) | Clone + `claude plugin add ./path` — two commands, explained in README |
+| Team-wide rollout | Commit plugin into shared repo + `settings.json` — zero participant action |
+| Research team testing | `--plugin-dir` — instant iteration during development |
+
+The key insight: **the plugin structure is valuable even without a marketplace**. It gives you namespacing, hooks, proper skill packaging, and a clean uninstall path. The marketplace is a distribution channel, not a prerequisite for the plugin format itself.
+
+If/when the marketplace infrastructure becomes worth the overhead (many teams, public distribution), the same plugin structure works — you just add a `marketplace.json` to this repo. The sideload path is forward-compatible.
+
 ## Recommendation
 
-**Yes, a plugin would meaningfully simplify the install.** The strongest argument: it replaces a two-step manual process that touches hidden directories with a one-line command. For the non-technical target audience, this is a significant usability improvement.
+**Yes, a plugin would meaningfully simplify the install — and a marketplace is not required to get the benefits.**
 
 ### Suggested approach
 
-1. **Restructure this repo as a plugin + marketplace** — add `.claude-plugin/plugin.json` and `marketplace.json`, move the skill into `skills/research-log/SKILL.md`
+1. **Restructure this repo as a plugin** — add `.claude-plugin/plugin.json`, move the skill into `skills/research-log/SKILL.md`. Skip `marketplace.json` for now.
 2. **Add a SessionEnd hook** — reliably prompt for research logging instead of relying solely on CLAUDE.md interpretation
 3. **Test whether skill descriptions provide ambient context** — if the skill's description is loaded at session start, the plugin alone may be sufficient. If not, fall back to the hybrid approach (plugin + one-line CLAUDE.md addition)
-4. **Keep the current manual install as a fallback** — document both paths in the README. Some environments may restrict plugin installation.
+4. **Test `claude plugin add ./path` reliability** — verify the known persistence bug is resolved, or document the workaround
+5. **Keep the current manual install as a fallback** — document both paths in the README
 
 ### Migration path
 
-The restructuring is non-breaking. The existing files (`claude-md-addition.md`, `research-log-skill.md`) can remain alongside the plugin structure for users who prefer manual install. The README would offer both paths:
+The restructuring is non-breaking. The existing files (`claude-md-addition.md`, `research-log-skill.md`) can remain alongside the plugin structure for users who prefer manual install. The README would offer three paths:
 
-> **Option A (recommended):** Run `/plugin marketplace add dudgeon/claude-code-user-research-agent`, then `/plugin install research-agent`
+> **Option A (recommended):** Clone this repo, then run `claude plugin add ~/path-to-clone`
 >
-> **Option B (manual):** Follow the copy-paste instructions below.
+> **Option B (team rollout):** Commit the plugin into your project repo and add to `.claude/settings.json`
+>
+> **Option C (manual):** Follow the copy-paste instructions below
+
+A marketplace can be added later if broader public distribution is needed — the plugin structure is the same either way.
 
 ### Open questions to investigate
 
