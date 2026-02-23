@@ -41,11 +41,11 @@ Append to `~/.claude/research-log.md` (create the file if it doesn't exist). Add
 **Research Agent Version**: v3
 **Participant Role**: [job family from CLAUDE.md — e.g., Product Manager, Software Engineer, Designer]
 
-## Task Summary
+### Task Summary
 
 [1-3 generic sentences describing the TYPE of work. Never include product names, feature details, customer data, or business strategy.]
 
-## Task Categories Observed
+### Task Categories Observed
 
 [Check all that apply]
 - [ ] Content drafting (PRDs, emails, presentations, docs)
@@ -59,7 +59,7 @@ Append to `~/.claude/research-log.md` (create the file if it doesn't exist). Add
 - [ ] Collaboration artifact (something shared with or created for teammates)
 - [ ] Other: [brief description]
 
-## Lifecycle Phase
+### Lifecycle Phase
 
 [Check the best match]
 - [ ] Discovery (user research, market analysis, problem framing)
@@ -70,7 +70,7 @@ Append to `~/.claude/research-log.md` (create the file if it doesn't exist). Add
 - [ ] Iteration (feedback analysis, metrics review, refinement)
 - [ ] Not product development (knowledge management, business operations, admin)
 
-## Interaction Patterns
+### Interaction Patterns
 
 - Delegation style: [one-line requests / detailed briefs / iterative refinement / structured multi-step]
 - Provided examples or reference material: yes/no
@@ -82,15 +82,15 @@ Append to `~/.claude/research-log.md` (create the file if it doesn't exist). Add
 - Referenced teammates or shared repos: yes/no
 - Created artifacts for team consumption: yes/no
 
-## Friction & Obstacles
+### Friction & Obstacles
 
 [Note any observed difficulties — e.g., confusion with environment, frustration with tooling, abandoned approaches, reverting to legacy tools. Or: "No significant friction observed."]
 
-## Delivery Blockers & Toil
+### Delivery Blockers & Toil
 
 [Capture blockers, waiting states, approval gates, repetitive manual work, or systems that resist automation. Anonymize people (use role titles, never names). DO capture the specific system or process.]
 
-### Blockers Observed
+#### Blockers Observed
 [Check all that apply]
 - [ ] Waiting for approval (from: [role])
 - [ ] Blocked by another team's deliverable
@@ -100,19 +100,19 @@ Append to `~/.claude/research-log.md` (create the file if it doesn't exist). Add
 - [ ] Compliance or legal review pending
 - [ ] No blockers observed this session
 
-### Toil & Poor Agentic Interfaces
+#### Toil & Poor Agentic Interfaces
 [Note repetitive manual work or systems that resist automation — e.g., manual status updates across tools, copy-pasting between disconnected systems, browser-only workflows with no API, hunting for information across tools. Or: "No significant toil observed."]
 
-### Blocker Impact
+#### Blocker Impact
 - Time lost to blockers/toil: [none / minor (<5min) / moderate (5-15min) / significant (15min+) / session-defining]
 - Caused task-switching or abandonment: yes/no
 - Recurring issue: yes/no/unclear
 
-## Wins & Breakthroughs
+### Wins & Breakthroughs
 
 [Note positive moments — e.g., user discovered a new capability, expressed satisfaction, made a workflow connection. Or: "No notable wins this session."]
 
-## Maturity Assessment
+### Maturity Assessment
 
 [Only assess dimensions with clear signal.]
 
@@ -127,11 +127,11 @@ Append to `~/.claude/research-log.md` (create the file if it doesn't exist). Add
 
 **Maturity Shorthand**: [E?-D?-C?-T?-I?-M?]
 
-## Notable Quotes or Behaviors
+### Notable Quotes or Behaviors
 
 [Optional. 1-3 anonymized observations — e.g., "I usually just paste this into a Google Doc, but let me try keeping it here."]
 
-## Recommendations for This User
+### Recommendations for This User
 
 [Optional. 1-2 actionable suggestions — e.g., "Ready to try creating their first custom skill."]
 ```
