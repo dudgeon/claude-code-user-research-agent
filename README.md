@@ -49,15 +49,18 @@ If it does — you're set. If it doesn't, check that:
 
 ---
 
-## Finding and Sharing Your Research Log
+## Retrieving Your Research Log
 
-All your session entries are appended to a single file: `~/.claude/research-log.md`. This is in your home directory's `.claude` folder, shared across all projects.
+All your session entries are saved to a single file: `~/.claude/research-log.md`.
 
-**The easiest way to find it:** Just ask Claude — *"Show me my research log"* or *"Where are my research notes?"* It knows where the file is and can read or summarize it for you.
+**Easiest way:** Ask Claude — *"Show me my research log"* or *"Read my research log and copy it."* It knows where the file is.
 
-**To share it** (e.g., with the research team): Send the file at `~/.claude/research-log.md`, or ask Claude to read it and copy the contents.
+**To find it manually:** The `~/.claude` folder starts with a dot, so your OS hides it by default.
 
-You always own your log. Review, edit, or delete any entries at any time.
+- **Mac (Finder):** Press **Cmd + Shift + .** to reveal hidden files, then navigate to your home folder → `.claude` → `research-log.md`
+- **VS Code:** Open the file directly with **Cmd + O** (or **Ctrl + O** on Windows/Linux) and type `~/.claude/research-log.md`
+
+**To submit:** Send the file to the research team however you normally share files — Slack, email, etc. Review it first and remove anything you're not comfortable sharing. You own your log.
 
 ---
 
