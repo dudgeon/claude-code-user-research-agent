@@ -49,15 +49,15 @@ If it does — you're set. If it doesn't, check that:
 
 ---
 
-## Finding and Sharing Your Research Logs
+## Finding and Sharing Your Research Log
 
-Your research logs are saved inside your project at `.claude/research-logs/`. Each session gets its own file.
+All your session entries are appended to a single file: `~/.claude/research-log.md`. This is in your home directory's `.claude` folder, shared across all projects.
 
-**The easiest way to find them:** Just ask Claude — *"Show me my research logs"* or *"Where are my research agent notes?"* It knows where they are and can list, read, or summarize them for you.
+**The easiest way to find it:** Just ask Claude — *"Show me my research log"* or *"Where are my research notes?"* It knows where the file is and can read or summarize it for you.
 
-**To share logs** (e.g., with the research team): Ask Claude *"Gather my research logs so I can share them"* and it will collect them for you. Or copy the files directly from the `.claude/research-logs/` folder in your project.
+**To share it** (e.g., with the research team): Send the file at `~/.claude/research-log.md`, or ask Claude to read it and copy the contents.
 
-You always own your logs. Review, edit, or delete any of them at any time.
+You always own your log. Review, edit, or delete any entries at any time.
 
 ---
 

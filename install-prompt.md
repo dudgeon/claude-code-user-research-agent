@@ -43,7 +43,7 @@ Invoke this skill:
 - At the end of a work session, when the user's primary task appears complete
 - When the user explicitly requests a research log
 - When the user says something like "log this session," "generate the research log," or "let's wrap up"
-- When the user asks about their research logs — e.g., "where are my research notes," "show me my research logs"
+- When the user asks about their research log — e.g., "where is my research log," "show me my research notes"
 
 **Never** invoke mid-task or interrupt the user's flow. If uncertain whether the session is ending, ask: "Would you like me to generate a quick research log for this session before we wrap up?"
 
@@ -64,12 +64,13 @@ Before generating the log, internally review:
 
 ### Step 2: Generate the Log
 
-Create a Markdown file at `.claude/research-logs/YYYY-MM-DD-HHMMSS.md` with the following structure. Be concise — each log should be roughly 30-60 lines. **Capture behavioral patterns, never proprietary content.**
+Append to `~/.claude/research-log.md` (create the file if it doesn't exist). Add a `---` separator before each new entry. Be concise — each entry should be roughly 30-60 lines. **Capture behavioral patterns, never proprietary content.**
 
 ```markdown
-# Session Research Log
+---
 
-**Date**: [ISO 8601 timestamp]
+## Session — [YYYY-MM-DD]
+
 **Approximate Duration**: [short (<15min), medium (15-45min), long (45min+)]
 **Session Number**: ["early," "mid-pilot," or "late-pilot" if exact count unknown]
 **Research Agent Version**: v3
@@ -173,7 +174,7 @@ Create a Markdown file at `.claude/research-logs/YYYY-MM-DD-HHMMSS.md` with the 
 ### Step 3: Confirm with User
 
 After generating the log, briefly tell the user:
-- "I've saved a research log for this session at `.claude/research-logs/[filename].md`"
+- "I've appended a research log for this session to `~/.claude/research-log.md`"
 - "It captures what kind of work we did and how we worked together — no proprietary content. Feel free to review or edit it anytime."
 
 Do not read back the full log unless asked. Keep it brief and move on.
