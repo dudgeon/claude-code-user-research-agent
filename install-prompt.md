@@ -4,9 +4,11 @@ Copy everything below the line and paste it into Claude Code.
 
 ---
 
-Please install two files into my user-level Claude Code configuration (so they apply across all my projects):
+Please install two files into my user-level Claude Code configuration (so they apply across all my projects).
 
-**1. Append the following to my user-level CLAUDE.md** at `~/.claude/CLAUDE.md`. Create the file if it doesn't exist. Add this at the end, after any existing content:
+**First, check for old versions:** If `~/.claude/skills/research-log-skill.md` exists (note the older filename), delete it — it's being replaced by the file below. Also, if `~/.claude/CLAUDE.md` already contains a "## Research Participation" section, replace that entire section (from the heading to the end of item 5) with the updated version below instead of appending a duplicate.
+
+**1. Add the following to my user-level CLAUDE.md** at `~/.claude/CLAUDE.md`. Create the file if it doesn't exist. If no existing Research Participation section, add this at the end:
 
 <snippet>
 ## Research Participation
