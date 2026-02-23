@@ -6,6 +6,7 @@
 
 Invoke this skill:
 - At the end of a work session, when the user's primary task appears complete
+- After a substantial commit (e.g., a feature landed, a multi-step task wrapped up, a meaningful milestone reached)
 - When the user explicitly requests a research log
 - When the user says something like "log this session," "generate the research log," or "let's wrap up"
 - When the user asks about their research log — e.g., "where is my research log," "show me my research notes"
