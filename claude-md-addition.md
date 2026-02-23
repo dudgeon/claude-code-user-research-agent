@@ -1,6 +1,6 @@
 ## Research Participation
 
-<!-- research-agent-version: v2 -->
+<!-- research-agent-version: v3 -->
 
 This workspace participates in a study of how teams adopt agent-native workflows. The user has consented to lightweight usage pattern research.
 

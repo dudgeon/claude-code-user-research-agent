@@ -23,44 +23,28 @@ Thank you for your interest in helping us learn about how Claude Code is being u
 
 ## Installation
 
-**Install this in the repo where you spend most of your time with Claude Code.** That's usually your team's main project repo — the one you open most often. If you work across several repos, pick the primary one; you can always add it to others later.
+Open Claude Code and paste in a single prompt. It installs everything at the user level, so it applies across all your projects automatically — no per-repo setup needed.
 
-### Step 1: Find (or create) your CLAUDE.md
+### Step 1: Copy the install prompt
 
-Your `CLAUDE.md` is a configuration file that lives at the top level of your project folder. Claude reads it at the start of every session. It might already exist.
+Open [`install-prompt.md`](install-prompt.md) in this repo. On GitHub, click the **copy icon** in the top-right corner of the file view (it looks like two overlapping squares — see screenshot below).
 
-**Check if you have one:** In VS Code, look in the file explorer sidebar (the left panel) for a file called `CLAUDE.md` at the top of your project. You can also open your project folder in Finder and look for it there.
+<p align="center">
+  <img src="assets/github-copy-raw-button.png" width="60%" alt="Screenshot showing the copy raw file button on GitHub" />
+</p>
 
-If you see `CLAUDE.md`, great — you already have one. Skip to Step 2.
+### Step 2: Paste it into Claude Code
 
-**If it doesn't exist**, the easiest way to create one is to open Claude Code and ask: *"Create a CLAUDE.md for me."*
-
-### Step 2: Add the research snippet to your CLAUDE.md
-
-Open [`claude-md-addition.md`](claude-md-addition.md) in this repo, select all, copy, and **paste it at the end** of your `CLAUDE.md` (after whatever's already there). Save the file.
-
-> **Tip**: You can also ask Claude *"Add the research snippet to my CLAUDE.md"* and paste the contents of `claude-md-addition.md` when it asks what to add.
-
-### Step 3: Add the research-log skill
-
-Claude Code looks for skills in a folder called `.claude/skills/` inside your project. You need to put one file there.
-
-**The easiest way:** Open Claude Code in your project and say:
-
-*"Create a file at `.claude/skills/research-log.md`"*
-
-Then paste the entire contents of [`research-log-skill.md`](research-log-skill.md) from this repo when Claude asks what to put in it.
-
-**Or do it by hand:** In VS Code, look for a `.claude` folder in your project's sidebar. If you don't see it, you may need to show hidden files (see [Viewing hidden folders](#viewing-hidden-folders) below). Create a `skills` folder inside `.claude`, then create a file called `research-log.md` inside that and paste the contents of [`research-log-skill.md`](research-log-skill.md).
+Open Claude Code in VS Code (or the terminal) and paste the prompt you just copied. Claude will install both files for you and confirm when it's done.
 
 ### That's it — verify it worked
 
-Start a **new** Claude Code session in your project. At the end, Claude should offer something like: *"Would you like me to generate a quick research log for this session?"*
+Start a **new** Claude Code session in any project. At the end, Claude should offer something like: *"Would you like me to generate a quick research log for this session?"*
 
 If it does — you're set. If it doesn't, check that:
 
-- `CLAUDE.md` is at the top level of your project (not inside a subfolder)
-- The file `.claude/skills/research-log.md` exists
+- `~/.claude/CLAUDE.md` exists and contains a "Research Participation" section
+- `~/.claude/skills/research-log.md` exists
 - You started a *new* session (Claude reads CLAUDE.md at session start)
 
 ---
@@ -74,16 +58,6 @@ Your research logs are saved inside your project at `.claude/research-logs/`. Ea
 **To share logs** (e.g., with the research team): Ask Claude *"Gather my research logs so I can share them"* and it will collect them for you. Or copy the files directly from the `.claude/research-logs/` folder in your project.
 
 You always own your logs. Review, edit, or delete any of them at any time.
-
----
-
-## Viewing Hidden Folders
-
-The `.claude` folder starts with a dot, which means your computer hides it by default.
-
-**In VS Code:** The file explorer usually shows hidden files already — look for `.claude/` in the sidebar. If you don't see it, check Settings > `files.exclude` and make sure `**/.claude` isn't listed.
-
-**In Finder (Mac):** Open your project folder and press `Cmd + Shift + .` (period) to toggle hidden files on and off.
 
 ---
 
@@ -108,6 +82,25 @@ The `.claude` folder starts with a dot, which means your computer hides it by de
 - You can review, edit, or delete any log at any time
 - You can skip any session: just say *"skip the log"*
 - Collection happens on a separate, opt-in schedule
+
+---
+
+<details>
+<summary><strong>Manual installation</strong> (if you prefer to set up the files yourself)</summary>
+
+The install prompt above does two things. If you'd rather do them by hand:
+
+### 1. Add the research snippet to your CLAUDE.md
+
+Open [`claude-md-addition.md`](claude-md-addition.md) in this repo, copy its contents, and paste them at the end of your `~/.claude/CLAUDE.md` (create the file if it doesn't exist). This is your user-level CLAUDE.md that applies across all projects.
+
+### 2. Add the research-log skill
+
+Copy the contents of [`research-log-skill.md`](research-log-skill.md) from this repo into a new file at `~/.claude/skills/research-log.md`. Create the `skills` folder if it doesn't exist.
+
+**Viewing hidden folders:** The `~/.claude` folder starts with a dot, so your OS hides it by default. In Finder (Mac), press `Cmd + Shift + .` to toggle hidden files. In VS Code, the file explorer usually shows hidden files — check Settings > `files.exclude` if you don't see `.claude/`.
+
+</details>
 
 ---
 
